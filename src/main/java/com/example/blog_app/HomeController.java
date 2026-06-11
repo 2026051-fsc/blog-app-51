@@ -9,4 +9,14 @@ public class HomeController {
     public String home() {
         return "home";
     }
+
+    @GetMapping("/read")
+    public String read(){
+        return "read";
+    }
+
+    @GetMapping("/write")
+    public String write(){
+        return "write";
+    }
 }
