@@ -1,7 +1,8 @@
-head{
-    background-color: aqua;
-}
-
 h1{
     color:black;
+}
+
+header{
+    background-color: aqua;
+    color: white;
 }
