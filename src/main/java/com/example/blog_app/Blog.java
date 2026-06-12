@@ -7,13 +7,13 @@ public class Blog {
     public Blog(String title, String comment){
         this.title = title;
         this.comment = comment;
+    }
 
-        public String getTitle(){
-            return title;
-        }
+    public String getTitle(){
+        return title;
+    }
 
-        public String getComment(){
-            return comment;
-        }
+    public String getComment(){
+        return comment;
     }
 }

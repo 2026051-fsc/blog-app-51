@@ -1,41 +1,46 @@
 package com.example.blog_app;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import javax.sql.DataSource;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class BlogRepository {
-    private final DataSource dataSource;
+    private final JdbcClient jdbcClient;
 
-    public BlogRepository(DataSource dataSource){
-        this.dataSource = dataSource;
+    public BlogRepository(JdbcClient jdbcClient){
+        this.jdbcClient = jdbcClient;
     }
 
-    public List<Blog> findAll(){
-    List<Blog> blogs = new ArrayList<>();
-    String sql = "SELECT title,comment FROM blogs";
+  public List<Blog> findAll() {
+    return jdbcClient.sql("SELECT title, price, stock FROM books")
+        .query(Blog.class)
+        .list();
+  }
 
-        try(Connection conn = dataSource.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery()){
-
-            while (rs.next()) {
-                blogs.add(new Blog(rs.getString("title"),rs.getString("comment")));                
-            }
-        }catch(SQLException e){
-            throw new RuntimeException(e);
-        }
-        return blogs;
+    public Optional<Blog> findById(Long id){
+        return jdbcClient.sql("SELECT id,title,comment FROM blogs WHERE id = :id")
+        .param("id",id)
+        .query(Blog.class)
+        .optional();
     }
 
+//     public void save(Blog blog){
+//         jdbcClient.sql("INSERT INTO blogs(title,comment) VALUES(:title,:comment)")
+//         .param("title",blog.getTitle())
+//         .param("comment",blog.getComment())
+//         .update();
+//     }
 
+//     public boolean existsByTitle(String title) {
+//     Long count = jdbcClient.sql("SELECT COUNT(*) FROM books WHERE title = :title")
+//         .param("title", title)
+//         .query(Long.class)
+//         .single();
+//     return count > 0;
+// }
         
 
 }
