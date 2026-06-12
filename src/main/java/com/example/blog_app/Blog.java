@@ -4,7 +4,7 @@ public class Blog {
     private final String title;
     private final String comment;
 
-    public Blog(Stirng title, String comment){
+    public Blog(String title, String comment){
         this.title = title;
         this.comment = comment;
 

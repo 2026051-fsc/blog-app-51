@@ -6,3 +6,7 @@ header{
     background-color: aqua;
     color: white;
 }
+
+a {
+  text-decoration: none;
+}

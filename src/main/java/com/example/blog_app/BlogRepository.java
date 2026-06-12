@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.sql.DataSource;
 import org.springframework.stereotype.Repository;
 
@@ -17,17 +18,24 @@ public class BlogRepository {
         this.dataSource = dataSource;
     }
 
-    public List<Blog>finalAll(){
-        List <Blog>Blog = new ArrayList<>();
-        String sql = "SELECT title, price, stock FROM blogs";
-    }
-    
-    try (Connection conn = dataSource.getConnection();
+    public List<Blog> findAll(){
+    List<Blog> blogs = new ArrayList<>();
+    String sql = "SELECT title,comment FROM blogs";
+
+        try(Connection conn = dataSource.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery()){
 
-        while(rs.next()){
-            blogs.add(new Blog(rs.getString("title"),rs.getInt("comment")))
+            while (rs.next()) {
+                blogs.add(new Blog(rs.getString("title"),rs.getString("comment")));                
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
         }
-        }
+        return blogs;
+    }
+
+
+        
+
 }

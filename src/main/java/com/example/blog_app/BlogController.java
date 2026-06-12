@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BlogController {
+    private final BlogRepository blogRepository;
+
+    public BlogController(BlogRepository blogRepository){
+        this.blogRepository = blogRepository;
+    }
+
     @GetMapping("/sample")
     public String sample(@RequestParam String title,Model model){
         model.addAttribute("title",title);
@@ -15,7 +21,7 @@ public class BlogController {
 
     @GetMapping("/blogs")
     public String blog(Model model){
-        model.addAttribute("books",blogRepository.findAll())
+        model.addAttribute("books",blogRepository.findAll());
         return "blogs";
     }
 
