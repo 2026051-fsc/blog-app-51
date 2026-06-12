@@ -12,14 +12,11 @@
     <div>
     <li><a href="/home">ホーム</a></li>
     <li><a href="/profile">プロフィール</a></li>
+    <li><a href="/write">投稿</a></li>
   </div>
   </header> 
-    <!-- 開かれたブログ内容の表示 -->
-     <form action="blog.hensyu">
-        <label for=""></label>
-        <textarea name="" id=""></textarea>
-     </form>
-     <!-- ブログタイトル -->
-    <!-- ブログ内容 -->
+  <h1 th:text="${blogs.title}">こころ</h1>
+  <p>価格: <span th:text="${blogs.comment}"></span></p>
+  
 </body>
 </html>

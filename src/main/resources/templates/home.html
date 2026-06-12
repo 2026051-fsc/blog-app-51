@@ -14,10 +14,12 @@
     <li><a href="/profile">プロフィール</a></li>
     <li><a href="/write">投稿</a></li>
   </div>
-  </header>  
-  <p>投稿内容</p>
-  <!-- 投稿された内容を張り付ける -->
-   
+  </header>
+   <tr th:each="blogs:${blogs}">
+    <td th:text="${blogs.title}"></td>
+    <a th:href="@{/home/{id}(id=${blogs.id})}" th:text="${blogs.title}"></a>
+    <td th:text="${blogs.comment}"></td>
+   </tr>
 
 </body>
 </html>

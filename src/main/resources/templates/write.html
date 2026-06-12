@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>投稿の作成</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
   <header>
     <h1>新規作成</h1>
     <div>
-    <li><a href="/home">ホーム</a></li>
-    <li><a href="/profile">プロフィール</a></li>
-  </div>
-  </header> 
-  
-<form action="/home"></form>
-<textarea name="投稿内容" id=""></textarea></label>
-<button type="sunmit">投稿</button>
+      <li><a href="/home">ホーム</a></li>
+      <li><a href="/profile">プロフィール</a></li>
+      <li><a href="/write">投稿</a></li>
+    </div>
+  </header>
+
+  <form action="/post" method="post">
+    <input type="text" id="title" name="title"><br>
+    <textarea name="comment" id="comment"></textarea></label>
+    <button type="sunmit">投稿</button>
+  </form>
 </body>
+
 </html>

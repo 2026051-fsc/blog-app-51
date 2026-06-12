@@ -15,7 +15,7 @@ public class BlogRepository {
     }
 
   public List<Blog> findAll() {
-    return jdbcClient.sql("SELECT title, price, stock FROM books")
+    return jdbcClient.sql("SELECT title, comment,id FROM blogs")
         .query(Blog.class)
         .list();
   }
@@ -27,12 +27,12 @@ public class BlogRepository {
         .optional();
     }
 
-//     public void save(Blog blog){
-//         jdbcClient.sql("INSERT INTO blogs(title,comment) VALUES(:title,:comment)")
-//         .param("title",blog.getTitle())
-//         .param("comment",blog.getComment())
-//         .update();
-//     }
+    public void save(Blog blog){
+        jdbcClient.sql("INSERT INTO blogs(title,comment) VALUES(:title,:comment)")
+        .param("title",blog.getTitle())
+        .param("comment",blog.getComment())
+        .update();
+    }
 
 //     public boolean existsByTitle(String title) {
 //     Long count = jdbcClient.sql("SELECT COUNT(*) FROM books WHERE title = :title")
